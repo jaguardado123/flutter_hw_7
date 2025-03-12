@@ -1,4 +1,4 @@
-# Homework 6 - Test Driven Development
+# HW 6 - Test Driven Development
 
 The objective for this homework practice test-driven-development (TDD). In TDD you develop your tests first and then write code to pass those tests. Here I have provided the tests for you, so your assignment is to develop code to pass the tests.
 
