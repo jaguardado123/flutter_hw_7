@@ -1,6 +1,6 @@
 name: test_hw_6
 on:
-  pull_request:
+  push:
     branches:
       - master
 jobs:
