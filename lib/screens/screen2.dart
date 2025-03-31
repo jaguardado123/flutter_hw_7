@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hw_7/models/converter.dart';
 
 class Screen2 extends StatefulWidget {
   const Screen2({super.key});
@@ -8,9 +9,10 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> {
-  // CREATE VARIABLES HERE
-
-  // CREATE TEXT EDITING CONTROLLER HERE
+  // VARIABLES
+  double miles = 0;
+  double km = 0;
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,8 @@ class _Screen2State extends State<Screen2> {
               Navigator.pop(context);
             },
           ),
-          title: Text(
-            "Converter",
+          title: const Text(
+            "Miles to Kilometers",
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.green,
@@ -36,11 +38,38 @@ class _Screen2State extends State<Screen2> {
         body: Center(
           child: Column(
             children: [
-              // CREATE TEXTFIELD TO INPUT FEET
+              // TEXTFIELD TO INPUT MILES
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    const Text("MILES: ", style: TextStyle(fontSize: 18)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      // Ensures the TextField takes up remaining space
+                      child: TextField(
+                        controller: _controller,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
-              // CREATE ELEVATED BUTTON TO CONVERT FEET TO YARDS
+              // ELEVATED BUTTON TO CONVERT FEET TO Meters
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      miles = double.parse(_controller.text);
+                      km = Converter.miles_to_km(miles);
+                    });
+                  },
+                  child: const Text("Convert", style: TextStyle(fontSize: 18))),
 
-              // CREATE CODE TO DISPLAY YARDS
+              // DISPLAY METERS
+              Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text("Kilometers: ${km}",
+                      style: const TextStyle(fontSize: 18)))
             ],
           ),
         ),

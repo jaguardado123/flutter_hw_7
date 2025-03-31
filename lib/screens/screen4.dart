@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw_7/models/converter.dart';
 
-class Screen3 extends StatefulWidget {
-  const Screen3({super.key});
+class Screen4 extends StatefulWidget {
+  const Screen4({super.key});
 
   @override
-  State<Screen3> createState() => _Screen3State();
+  State<Screen4> createState() => _Screen3State();
 }
 
-class _Screen3State extends State<Screen3> {
+class _Screen3State extends State<Screen4> {
   // VARIABLES
-  double lb = 0;
-  double kg = 0;
+  double oz = 0;
+  double g = 0;
   TextEditingController _controller = TextEditingController();
 
   @override
@@ -29,10 +29,10 @@ class _Screen3State extends State<Screen3> {
             },
           ),
           title: Text(
-            "Pounds to Kilograms",
+            "Ounces to Grams",
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.grey,
           centerTitle: true,
         ),
         body: Center(
@@ -43,7 +43,7 @@ class _Screen3State extends State<Screen3> {
                 padding: EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    const Text("Lb: ", style: TextStyle(fontSize: 18)),
+                    const Text("Ounces: ", style: TextStyle(fontSize: 18)),
                     const SizedBox(width: 10),
                     Expanded(
                       // Ensures the TextField takes up remaining space
@@ -59,8 +59,8 @@ class _Screen3State extends State<Screen3> {
               ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      lb = double.parse(_controller.text);
-                      kg = Converter.lb_to_kg(lb);
+                      oz = double.parse(_controller.text);
+                      g = Converter.ounces_to_grams(oz);
                     });
                   },
                   child: const Text("Convert", style: TextStyle(fontSize: 18))),
@@ -69,7 +69,7 @@ class _Screen3State extends State<Screen3> {
               Padding(
                   padding: EdgeInsets.all(20),
                   child:
-                      Text("Kg: ${kg}", style: const TextStyle(fontSize: 18)))
+                      Text("Grams: ${g}", style: const TextStyle(fontSize: 18)))
             ],
           ),
         ),

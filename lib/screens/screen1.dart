@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hw_7/models/converter.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});
@@ -8,8 +9,10 @@ class Screen1 extends StatefulWidget {
 }
 
 class _Screen1State extends State<Screen1> {
-  // CREATE VARIABLE TO KEEP TRACK OF COUNTER INCREMENT
-  int _counter = 0;
+  // VARIABLES
+  double feet = 0;
+  double meters = 0;
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +37,41 @@ class _Screen1State extends State<Screen1> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // CREATE CODE TO DISPLAY CURRENT COUNTER VALUE
-              const Text("Counter:"),
-              Text(
-                "${_counter}",
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
-              )
+              // TEXTFIELD TO INPUT FEET
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    const Text("Feet: ", style: TextStyle(fontSize: 18)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      // Ensures the TextField takes up remaining space
+                      child: TextField(
+                        controller: _controller,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // ELEVATED BUTTON TO CONVERT FEET TO Meters
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      feet = double.parse(_controller.text);
+                      meters = Converter.feet_to_meters(feet);
+                    });
+                  },
+                  child: const Text("Convert", style: TextStyle(fontSize: 18))),
+
+              // DISPLAY METERS
+              Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text("Meters: ${meters}",
+                      style: const TextStyle(fontSize: 18)))
             ],
           ),
-        ),
-        // CREATE FLOATING ACTION BUTTON TO INCREMENT COUNTER
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _counter++;
-            });
-          },
-          child: const Icon(Icons.add),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 name: test_hw_6
 on:
-  pull_request:
+  push:
     branches:
       - master
 jobs:
@@ -12,4 +12,5 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter test test/test.dart
+      - run: flutter test test/unit_test.dart
+      - run: flutter test test/integration_test.dart
